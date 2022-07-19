@@ -9,6 +9,7 @@ import com.example.tbc_homework_11.GameAdapter.Const.NOIMAGE
 import com.example.tbc_homework_11.databinding.ActivityMainBinding.inflate
 import com.example.tbc_homework_11.databinding.GameWithImageBinding
 import com.example.tbc_homework_11.databinding.GameWithoutImageBinding
+import com.squareup.picasso.Picasso
 import java.text.ParseException
 
 class GameAdapter(private var games: ArrayList<Game>) :
@@ -21,7 +22,9 @@ class GameAdapter(private var games: ArrayList<Game>) :
     inner class GameWithImageViewHolder(private val gameWithImage: GameWithImageBinding) :
         RecyclerView.ViewHolder(gameWithImage.root) {
         fun bind(game: Game) {
-            gameWithImage.gameImage.setImageResource(game.resource!!)
+            Picasso.get()
+                .load(game.imageURL)
+                .into(gameWithImage.gameImage)
             gameWithImage.gameWithImageTitle.text = game.title
             gameWithImage.gameWithImageDesc.text = game.desc
         }
@@ -61,6 +64,11 @@ class GameAdapter(private var games: ArrayList<Game>) :
 
     override fun getItemCount(): Int {
         return games.size
+    }
+
+    fun addGame(game: Game, position: Int){
+        gamesList.add(game)
+        notifyItemInserted(position)
     }
 
 }
