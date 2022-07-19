@@ -31,7 +31,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         val addButton = mainBinding.buttonAdd
-        addButton.background.alpha = 90
+        addButton.background.alpha = 200
         addButton.setOnClickListener {
             editLuncher?.launch(Intent(this, EditActivity::class.java))
         }
