@@ -4,3 +4,4 @@ since this app only edits,adds and removes 1 element a a time, I did not really 
 We had 1 list which we kept updating, we were not getting new list from server or from database.
 Refresh button is also present. The app uses URLs as its image sources.
 
+![Alt text](relative/path/to/img.jpg?raw=true "Screenshot")
