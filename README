@@ -3,5 +3,3 @@ It's up to User to decide whether and which game list items he/she will have wit
 since this app only edits,adds and removes 1 element a a time, I did not really see reason to use DiffUtils and
 We had 1 list which we kept updating, we were not getting new list from server or from database.
 Refresh button is also present. The app uses URLs as its image sources.
-
-![Alt text](relative/path/to/img.jpg?raw=true "Screenshot")
