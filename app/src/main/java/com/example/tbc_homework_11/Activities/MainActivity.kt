@@ -13,8 +13,8 @@ import com.example.tbc_homework_11.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
     private lateinit var mainBinding: ActivityMainBinding
-    private val recAdapter = GameAdapter(gamesList){
-      it, pos ->  editGame(it, pos)
+    private val recAdapter = GameAdapter(gamesList) { it, pos ->
+        editGame(it, pos)
     }
     private var editLuncher: ActivityResultLauncher<Intent>? = null
 
@@ -27,8 +27,8 @@ class MainActivity : AppCompatActivity() {
             adapter = recAdapter
             layoutManager = GridLayoutManager(this@MainActivity, 2)
         }
-        editLuncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()){
-            if(it.resultCode == RESULT_OK){
+        editLuncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
+            if (it.resultCode == RESULT_OK) {
                 recAdapter.addGame(it.data?.getSerializableExtra("game") as Game, gamesList.size)
             }
         }
@@ -39,15 +39,17 @@ class MainActivity : AppCompatActivity() {
             editLuncher?.launch(Intent(this, EditActivity::class.java))
         }
 
-        }
+    }
+
     private fun editGame(game: Game, position: Int) {
         val intent = Intent(this, EditActivity::class.java)
         intent.putExtra("gameToEditPos", position)
         startActivity(intent)
     }
+
     override fun onResume() {
         super.onResume()
-        recAdapter.notifyDataSetChanged()
+        recAdapter.notifyItemChanged(intent.getIntExtra("position", gamesList.size))
 
     }
 }

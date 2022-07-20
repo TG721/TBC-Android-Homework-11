@@ -10,12 +10,12 @@ import com.example.tbc_homework_11.*
 import com.example.tbc_homework_11.databinding.ActivityEditBinding
 import com.squareup.picasso.Picasso
 
-fun isEmpty( Etext : EditText ): Boolean{
-    if(Etext.text.toString().trim().isEmpty()) {
+
+fun checkEmpty(Etext: EditText): Boolean {
+    if (Etext.text.toString().trim().isEmpty()) {
         Etext.error = "Please fill this field"
         return true
-    }
-    else return false
+    } else return false
 }
 
 class EditActivity : AppCompatActivity() {
@@ -26,7 +26,7 @@ class EditActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         binding.apply {
-            buttonExtract.setOnClickListener{
+            buttonExtract.setOnClickListener {
                 Picasso.get()
                     .load(urlET.text.toString())
                     .error(R.drawable.error)
@@ -37,8 +37,8 @@ class EditActivity : AppCompatActivity() {
 
             buttonConfirm.setOnClickListener {
                 //if it is empty
-                if(isEmpty(titleET) || isEmpty(descriptionET)) {}
-                else {
+                if (checkEmpty(titleET) || checkEmpty(descriptionET)) {
+                } else {
                     lateinit var game: Game
                     if (urlET.text.toString().trim() == "")
                         game = Game(
@@ -54,20 +54,18 @@ class EditActivity : AppCompatActivity() {
                         HasImage.TRUE
                     )
 
-                    val gameToEditPos : Int = intent.getIntExtra("gameToEditPos", -1)
-                    if(gameToEditPos==-1) {
+                    val gameToEditPos: Int = intent.getIntExtra("gameToEditPos", -1)
+                    if (gameToEditPos == -1) {
                         val editIntent = Intent().apply {
                             putExtra("game", game)
                         }
                         setResult(RESULT_OK, editIntent)
 
-                    }
-                    else {
-//                        val newGamesList = arrayListOf<Game>()
-//                        newGamesList.addAll(gamesList)
-                        gamesList[gameToEditPos]=game
-                        val intent = Intent(this@EditActivity,MainActivity::class.java)
-                            startActivity(intent)
+                    } else {
+                        gamesList[gameToEditPos] = game
+                        val intent = Intent(this@EditActivity, MainActivity::class.java)
+                        intent.putExtra("position", gameToEditPos)
+                        startActivity(intent)
 
                     }
                     finish()
