@@ -10,7 +10,7 @@
         android:id="@+id/titleET"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="20dp"
         android:ems="10"
         android:hint="@string/title"
         android:inputType="textPersonName"
@@ -21,7 +21,7 @@
         android:id="@+id/descriptionET"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="25dp"
         android:ems="10"
         android:gravity="start|top"
         android:hint="@string/description"
@@ -55,11 +55,11 @@
         android:id="@+id/buttonConfirm"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="20dp"
         android:background="@android:color/holo_green_light"
         android:text="@string/confirm"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:layout_editor_absoluteX="483dp" />
+        app:layout_constraintStart_toStartOf="@+id/guideline4"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
         android:id="@+id/extractedImV"

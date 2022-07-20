@@ -1,8 +1,6 @@
 package com.example.tbc_homework_11.Activities
 
 import android.content.Intent
-import android.icu.number.NumberFormatter.with
-import android.icu.number.NumberRangeFormatter.with
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.EditText
@@ -19,7 +17,7 @@ fun checkEmpty(Etext: EditText): Boolean {
 }
 
 class EditActivity : AppCompatActivity() {
-    lateinit var binding: ActivityEditBinding
+    lateinit private var binding: ActivityEditBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityEditBinding.inflate(layoutInflater)
@@ -30,7 +28,7 @@ class EditActivity : AppCompatActivity() {
                 Picasso.get()
                     .load(urlET.text.toString())
                     .error(R.drawable.error)
-                    .into(extractedImV);
+                    .into(extractedImV)
 
             }
 
@@ -55,15 +53,17 @@ class EditActivity : AppCompatActivity() {
                     )
 
                     val gameToEditPos: Int = intent.getIntExtra("gameToEditPos", -1)
+                    //if gameToEditPos is -1 it means we got in this activity through add button
                     if (gameToEditPos == -1) {
                         val editIntent = Intent().apply {
                             putExtra("game", game)
                         }
                         setResult(RESULT_OK, editIntent)
-
+                    //if it ain't -1 it means we got here though edit button
                     } else {
                         gamesList[gameToEditPos] = game
                         val intent = Intent(this@EditActivity, MainActivity::class.java)
+                        //recAdapter.notifyItemChanged function in MainActivity needs position as parameter
                         intent.putExtra("position", gameToEditPos)
                         startActivity(intent)
 

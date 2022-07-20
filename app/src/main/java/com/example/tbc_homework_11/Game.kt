@@ -1,6 +1,5 @@
 package com.example.tbc_homework_11
 
-import android.os.Parcelable
 import java.io.Serializable
 
 data class Game(

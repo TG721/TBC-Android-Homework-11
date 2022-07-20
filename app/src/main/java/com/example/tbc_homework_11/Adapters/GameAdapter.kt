@@ -1,17 +1,12 @@
 package com.example.tbc_homework_11
 
 import android.view.LayoutInflater
-import android.view.View.inflate
 import android.view.ViewGroup
-import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
-import com.example.tbc_homework_11.GameAdapter.Const.HASIMAGE
-import com.example.tbc_homework_11.GameAdapter.Const.NOIMAGE
-import com.example.tbc_homework_11.databinding.ActivityMainBinding.inflate
 import com.example.tbc_homework_11.databinding.GameWithImageBinding
 import com.example.tbc_homework_11.databinding.GameWithoutImageBinding
 import com.squareup.picasso.Picasso
-import java.text.ParseException
+
 
 class GameAdapter(private var games: ArrayList<Game>, private var onItemEditClicked: ((game: Game, position: Int) -> Unit)) :
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
@@ -82,12 +77,6 @@ class GameAdapter(private var games: ArrayList<Game>, private var onItemEditClic
         gamesList.removeAt(position)
         notifyItemRemoved(position)
         notifyItemRangeChanged(position, itemCount)
-    }
-    fun setData(newGameList: ArrayList<Game>){
-        val diffUtil = MyDiffUtil(gamesList, newGameList)
-        val diffResult = DiffUtil.calculateDiff(diffUtil)
-        gamesList = newGameList
-        diffResult.dispatchUpdatesTo(this)
     }
 
 }
