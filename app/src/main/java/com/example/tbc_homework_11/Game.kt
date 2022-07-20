@@ -1,15 +1,17 @@
 package com.example.tbc_homework_11
 
+import android.os.Parcelable
 import java.io.Serializable
 
 data class Game(
-    val title: String,
-    val desc: String,
+    var title: String,
+    var desc: String,
     var imageURL: String?,
-    val hasImage: HasImage
+    var hasImage: HasImage
 ) : Serializable
 
-val gamesList = arrayListOf<Game>(
+
+var gamesList = arrayListOf<Game>(
     Game("Witcher 2", "The Witcher 2: Assassins of Kings (Polish: Wiedźmin 2: Zabójcy królów) is a 2011 action role-playing video game developed by CD Projekt Red, based on The Witcher series of fantasy novels by Andrzej Sapkowski.", "https://s3.amazonaws.com/prod-media.gameinformer.com/styles/body_default/s3/legacy-images/imagefeed/The%20Witcher%202%20Is%20The%20Big%20New%20Xbox%20One%20Backward%20Compatible%20Game/witcher20527.jpg",
         HasImage.TRUE
     ),

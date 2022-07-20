@@ -6,9 +6,7 @@ import android.icu.number.NumberRangeFormatter.with
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.EditText
-import com.example.tbc_homework_11.Game
-import com.example.tbc_homework_11.HasImage
-import com.example.tbc_homework_11.R
+import com.example.tbc_homework_11.*
 import com.example.tbc_homework_11.databinding.ActivityEditBinding
 import com.squareup.picasso.Picasso
 
@@ -55,10 +53,23 @@ class EditActivity : AppCompatActivity() {
                         urlET.text.toString(),
                         HasImage.TRUE
                     )
-                    val editIntent = Intent().apply {
-                        putExtra("game", game)
+
+                    val gameToEditPos : Int = intent.getIntExtra("gameToEditPos", -1)
+                    if(gameToEditPos==-1) {
+                        val editIntent = Intent().apply {
+                            putExtra("game", game)
+                        }
+                        setResult(RESULT_OK, editIntent)
+
                     }
-                    setResult(RESULT_OK, editIntent)
+                    else {
+//                        val newGamesList = arrayListOf<Game>()
+//                        newGamesList.addAll(gamesList)
+                        gamesList[gameToEditPos]=game
+                        val intent = Intent(this@EditActivity,MainActivity::class.java)
+                            startActivity(intent)
+
+                    }
                     finish()
                 }
             }
